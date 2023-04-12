@@ -1,6 +1,7 @@
 # For MacOS
 .DS_Store
 
+
 # Adding config.py file.
 config.py
 
