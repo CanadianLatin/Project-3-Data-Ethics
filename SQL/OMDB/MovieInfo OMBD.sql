@@ -1,0 +1,28 @@
+Drop Table if exists MovieInfo_omdb;
+create table MovieInfo_omdb(
+imdbID VARCHAR NOT NULL,
+Title VARCHAR(300) NOT NULL,
+Year INT NOT NULL,
+Rated VARCHAR NOT NULL,
+Released VARCHAR NOT NULL,
+Actors VARCHAR(300) NOT NULL,	
+Awards VARCHAR(300) NOT NULL,
+BoxOffice BIGINT NOT NULL,
+Country VARCHAR(300) NOT NULL,	
+DVD VARCHAR NOT NULL,
+Director VARCHAR(100) NOT NULL,	
+Genre VARCHAR(200) NOT NULL,
+Language VARCHAR(200) NOT NULL,
+imdbVotes BIGINT NOT NULL,
+IMDB_Rating DECIMAL NOT NULL,
+Rotten_Tomatoes_Rating DECIMAL NOT NULL,
+Metascore_Rating DECIMAL NOT NULL,
+Plot VARCHAR(300) NOT NULL,
+Poster VARCHAR(300) NOT NULL,	
+Production VARCHAR NOT NULL,
+Response VARCHAR NOT NULL,	
+Runtime VARCHAR NOT NULL,	
+Type VARCHAR NOT NULL, 
+Writer VARCHAR(300) NOT NULL,	
+Primary Key(imdbID)
+);
