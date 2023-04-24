@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, send_file
 
 import psycopg2
 
@@ -67,6 +67,11 @@ def index():
       movie_dict['movie_data'].append(movie_data_dict)
 
    return jsonify(movie_dict)
+
+@app.route('/image')
+def get_image():
+    filename = 'templates/Images/LOG_transparent.jpg'
+    return send_file(filename, mimetype='image/jpg')
 
 if __name__ == '__main__':
     app.run(debug=True)
