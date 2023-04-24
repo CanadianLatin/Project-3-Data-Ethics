@@ -52,6 +52,8 @@ function optionChanged(selectedGenre) {
             header = tbl_header.append("th");
             header.text("IMDB_rating");
             header = tbl_header.append("th");
+            header.text("Metascore");
+            header = tbl_header.append("th");
             header.text("TMDB_rating");
             header = tbl_header.append("th");
             header.text("Country");
@@ -70,6 +72,8 @@ function optionChanged(selectedGenre) {
                 cell.text(row.rated);
                 cell = tbl_data.append("td");
                 cell.text(row.imdb_rating);
+                cell = tbl_data.append("td");
+                cell.text(row.metascore_rating);
                 cell = tbl_data.append("td");
                 cell.text(row.tmdb_rating);
                 cell = tbl_data.append("td");
@@ -235,6 +239,8 @@ function init() {
             header = tbl_header.append("th");
             header.text("IMDB_rating");
             header = tbl_header.append("th");
+            header.text("Metascore");
+            header = tbl_header.append("th");
             header.text("TMDB_rating");
             header = tbl_header.append("th");
             header.text("Country");
@@ -253,6 +259,8 @@ function init() {
                 cell.text(row.rated);
                 cell = tbl_data.append("td");
                 cell.text(row.imdb_rating);
+                cell = tbl_data.append("td");
+                cell.text(row.metascore_rating);
                 cell = tbl_data.append("td");
                 cell.text(row.tmdb_rating);
                 cell = tbl_data.append("td");
@@ -274,13 +282,12 @@ function init() {
                 type: 'scatterplot',
                 x: 'imdb_votes',
                 y: 'boxoffice',
-                
-                // settings: {
-                //     // Specify the fields used in the chart
-                //     // and add annotations to those fields
-                //     'x': {label: 'IMDB Votes'},
-                //     'y': {label: 'Box Office'}
-                // }
+                settings: {
+                    // Specify the fields used in the chart
+                    // and add annotations to those fields
+                    'x': {label: 'IMDB Votes'},
+                    'y': {label: 'Box Office'}
+                }
             });
         }
         chart.renderTo('#scatter');
