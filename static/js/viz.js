@@ -1,4 +1,4 @@
-console.log("Viz.js");
+console.log("viz.js 23/04/2023  19:23");
 const url = "http://127.0.0.1:5000/data";
 
 let dropdown = d3.select('#selDataset');
@@ -35,8 +35,6 @@ function optionChanged(selectedGenre) {
         let movie_data_list = data.movie_data;
 
         let selection = movie_data_list.filter((movie) => movie.genre.includes(selectedGenre));
-
-        console.log(selection);
 
         document.getElementById("demo").innerHTML = ""
             document.getElementById("demo").innerHTML = selectedGenre + " Movie List";
@@ -80,11 +78,6 @@ function optionChanged(selectedGenre) {
                 cell.text(row.language);
         
             });
-        
-            let elements = document.getElementsByTagName('select');
-            for (let i = 0; i < elements.length; i++) {
-                elements[i].selectedIndex = 0;
-            }
 
         // Update or create the Taucharts scatterplot
         if (chart) {
@@ -93,20 +86,23 @@ function optionChanged(selectedGenre) {
             chart.refresh();
         } else {
             // If the chart doesn't exist, create a new one
-            chart = new Taucharts.Chart({
+            let chart = new Taucharts.Chart({
                 data: selection,
                 type: 'scatterplot',
                 x: 'imdb_votes',
                 y: 'boxoffice',
-                settings: {
-                    // Specify the fields used in the chart
-                    // and add annotations to those fields
-                    'x': {label: 'IMDB Votes'},
-                    'y': {label: 'Box Office'}
-                }
+                // settings: {
+                //     // Specify the fields used in the chart
+                //     // and add annotations to those fields
+                //     'x': {label: 'IMDB Votes'},
+                //     'y': {label: 'Box Office'}
+                // }
             });
+            chart.setData(selection);
+            chart.refresh();
         }
-            chart.renderTo('#scatter');
+        
+        chart.renderTo('#scatter');
 
         titles_and_ratings = [[],[]];
     
@@ -132,11 +128,6 @@ function optionChanged(selectedGenre) {
             };
         }
 
-        console.log(titles_and_ratings);
-
-        console.log(titles);
-        console.log(ratings);
-
         let runtimes = [];
 
         for (let i=0; i < selection.length; i++) {
@@ -146,8 +137,6 @@ function optionChanged(selectedGenre) {
         runtimes.sort(function(a, b) {
             return b - a;
           });
-
-        console.log(runtimes);
 
         let runtime_60to90 = 0;
         let runtime_90to120 = 0;
@@ -166,11 +155,6 @@ function optionChanged(selectedGenre) {
               }
         };
 
-        console.log(runtime_60to90);
-        console.log(runtime_90to120);
-        console.log(runtime_120to150);
-        console.log(runtime_150to210);
-
         let piedata = [{
             values: [runtime_60to90, runtime_90to120, runtime_120to150, runtime_150to210],
             labels: ['1hrs-1.5hrs', '1.5hrs-2hrs', '2hrs-2.5hrs', '2.5hrs-3.5hrs'],
@@ -178,7 +162,7 @@ function optionChanged(selectedGenre) {
         }];
         
         let pie_layout = {
-            paper_bgcolor : 'rgba(255,250,200,1)',
+            paper_bgcolor : '#FFCCFF',
             height: 400,
             width: 500,
             title: {
@@ -204,6 +188,8 @@ function optionChanged(selectedGenre) {
         let traceData = [trace1];
 
         let layout = {
+            paper_bgcolor : '#FFCCFF',
+            plot_bgcolor:'#FFCCFF',
             title: `Top ${titles.length} Rated Movies in ${selectedGenre} Genre`,
             margin: {
                 l: 350,
@@ -232,8 +218,6 @@ function init() {
         let movie_data_list = data.movie_data;
 
         let selection = movie_data_list
-
-        console.log(selection);
 
         document.getElementById("demo").innerHTML = ""
             document.getElementById("demo").innerHTML = "All Genres" + " Movie List";
@@ -278,11 +262,6 @@ function init() {
         
             });
         
-            let elements = document.getElementsByTagName('select');
-            for (let i = 0; i < elements.length; i++) {
-                elements[i].selectedIndex = 0;
-            }
-
         // Update or create the Taucharts scatterplot
         if (chart) {
             // If the chart already exists, update its data and render it again
@@ -295,16 +274,16 @@ function init() {
                 type: 'scatterplot',
                 x: 'imdb_votes',
                 y: 'boxoffice',
-                settings: {
-                    // Specify the fields used in the chart
-                    // and add annotations to those fields
-                    'x': {label: 'IMDB Votes'},
-                    'y': {label: 'Box Office'}
-                }
+                
+                // settings: {
+                //     // Specify the fields used in the chart
+                //     // and add annotations to those fields
+                //     'x': {label: 'IMDB Votes'},
+                //     'y': {label: 'Box Office'}
+                // }
             });
         }
-            chart.renderTo('#scatter');
-
+        chart.renderTo('#scatter');
 
         titles_and_ratings = [[],[]];
     
@@ -330,11 +309,6 @@ function init() {
             };
         }
 
-        console.log(titles_and_ratings);
-
-        console.log(titles);
-        console.log(ratings);
-
         let runtimes = [];
 
         for (let i=0; i < selection.length; i++) {
@@ -344,8 +318,6 @@ function init() {
         runtimes.sort(function(a, b) {
             return b - a;
           });
-
-        console.log(runtimes);
 
         let runtime_60to90 = 0;
         let runtime_90to120 = 0;
@@ -364,11 +336,6 @@ function init() {
               }
         };
 
-        console.log(runtime_60to90);
-        console.log(runtime_90to120);
-        console.log(runtime_120to150);
-        console.log(runtime_150to210);
-
         let piedata = [{
             values: [runtime_60to90, runtime_90to120, runtime_120to150, runtime_150to210],
             labels: ['1hrs-1.5hrs', '1.5hrs-2hrs', '2hrs-2.5hrs', '2.5hrs-3.5hrs'],
@@ -376,7 +343,7 @@ function init() {
         }];
         
         let pie_layout = {
-            paper_bgcolor : 'rgba(255,250,200,1)',
+            paper_bgcolor : '#FFCCFF',
             height: 400,
             width: 500,
             title: {
@@ -402,6 +369,8 @@ function init() {
         let traceData = [trace1];
 
         let layout = {
+            paper_bgcolor : '#FFCCFF',
+            plot_bgcolor:'#FFCCFF',
             title: `Top ${titles.length} Rated Movies Including All Genres`,
             margin: {
                 l: 350,
@@ -421,6 +390,8 @@ function init() {
     }
     );
 
+    let dropdown = d3.select('#selDataset');
+    genre_array = [];
 }
 
 init();
